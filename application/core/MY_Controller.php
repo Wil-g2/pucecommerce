@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    public function LoadView($view = 'list_users',$dados = null , $dados_cat = null){
+    public function LoadView($view = 'catalogo',$dados = null , $dados_cat = null){
         if ($this->session->userdata('tipo')=='administrador'){
             $this->load->view('admin/header');               
             $this->load->view($view, $dados);

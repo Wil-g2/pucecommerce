@@ -1,0 +1,4 @@
+.session/
+.vscode
+system/session
+vendor

@@ -23,12 +23,10 @@
         <div class="col-12">
             <div class="card">
             <div class="card-header">            
-            <?php echo validation_errors(); 
-                    if (isset($msg)){ ?>
-                    <div class="alert alert-info" role="alert"><strong>Info! </strong><?php  print_r($msg);?> </div>                       
-                <?php }
-                    //$this->output->enable_profiler(TRUE);                    
-                ?>
+            <?php  echo validation_errors();
+                if ($this->session->flashdata('msg')!=null){ ?>                 
+                <p class='alert alert-info'><?php echo $this->session->flashdata('msg');?></p>
+            <?php } ?> 
                 <form method="post" action="<?php echo base_url('enderecoadd');?>" id="form">
                     <div class="form-row">
                         <div class="form-group col-md-2">
@@ -63,19 +61,20 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>UF: (*)</label>
-                            <select name="estado" id="estado" class="form-control">
+                             <!--<select name="uf" id="uf" class="form-control">
                                 <option>--Selecione um UF--</option>
-                                <option value="mg" <?php if(set_value('uf')=="mg"){ echo "selected"; } ?> >MG</option>
-                                <option value="rj" <?php if(set_value('uf')=="rj"){ echo "selected"; } ?> >RJ</option>
-                                <option value="sp" <?php if(set_value('uf')=="sp"){ echo "selected"; } ?> >SP</option>
-                            </select>
+                                <option value="mg" <?php if($end->uf=="mg"){ echo "selected"; } ?> >MG</option>
+                                <option value="rj" <?php if($end->uf=="rj"){ echo "selected"; } ?> >RJ</option>
+                                <option value="sp" <?php if($end->uf=="sp"){ echo "selected"; } ?> >SP</option>
+                            </select>-->
+                            <input type="text" value="<?php echo set_value('uf');?>" name="uf" id="uf"/>
                         </div>
                     </div>
                     <div class="form-group">                        
                         <input type="hidden" name="id" value=""/><br>
-                        <a href="<?php echo base_url('users'); ?>" class="btn btn-info">Lista <i class="fa fa-list"></i> </a>
+                        <a href="<?php echo base_url('enderecos'); ?>" class="btn btn-info">Lista <i class="fa fa-list"></i> </a>
                         <button type="submit" value="Salvar" class="btn btn-success"> <i class="fa fa-save"></i> Salvar</button>
-                        <a href="<?php echo base_url('users'); ?>" class="btn btn-danger">Cancelar <i class="fa fa-warning"></i> </a>
+                        <a href="<?php echo base_url('enderecos'); ?>" class="btn btn-danger">Cancelar <i class="fa fa-warning"></i> </a>
                         <button type="reset" id="reset" name="reset" class="btn btn-default" onclick="resetForm('form')">Novo <i class="fa fa-newspaper-o"></i></button>
                     </div>
                 </form>

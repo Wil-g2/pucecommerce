@@ -32,8 +32,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Produtos </h3>
+                        <!--<h3 class="card-title">Produtos </h3>
                         <div class="form-group">
                             <input type="text" id="search" onkeyup="search()" placeholder="Pesquisar" class="form-control"/>
                         </div>
@@ -69,7 +68,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <?php foreach ($produtos as $prod): ?>
                             <div class="card">
                                 <div class="card-body">
-                                    <img src="https://cdnv2.moovin.com.br/biopoint/imagens/produtos/original/100-pure-whey-protein-900g-probiotica-c5d50b3c7007022be1dae90a398fa6bc.jpg" class="card-img-top"></img>
+                                    <img src="<?php echo base_url($prod->foto); ?>" class="card-img-top">
                                     <?php echo $prod->id.' - '.$prod->descricao;  ?>
                                     <?php echo 'R$ '.number_format($prod->valor,2,',','.') ?> <br>
                                     <a href="<?php echo base_url('addcart').'/'.$prod->id?>" class="btn btn-primary btn-block" >Adiconar

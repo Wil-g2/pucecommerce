@@ -31,18 +31,25 @@ class ProdutoModel extends CI_Model
 
     public function inserir()
     {
+        $data['dadosArquivo'] = $this->upload->data();
         $data = array(
             'nome' => $this->input->post('nome'),
             'descricao' => $this->input->post('descricao'),
             'peso' => $this->input->post('peso'),
             'valor' => $this->input->post('valor'),
+            'valor_cmp' => $this->input->post('valor_cmp'),
             'ativo' => $this->input->post('ativo'),
             'fabricante' => $this->input->post('fabricante'),
             'categoria' => $this->input->post('categoria'),
-            'data_inc' => $this->input->post('data_inc')
+            'data_inc' => $this->input->post('data_inc'),
+            'foto' =>$arquivoPath = 'uploads/'.$data['dadosArquivo']['file_name']
         );
 
-        return $this->db->insert('produtos', $data);
+        if ($this->security->xss_clean($data, TRUE) === FALSE){
+            return false; 
+        }else{
+            return $this->db->insert('produtos', $data);
+        }
     }
 
     public function getProdutosId($id = null)
@@ -65,10 +72,11 @@ class ProdutoModel extends CI_Model
                 'descricao' => $this->input->post('descricao'),
                 'peso' => $this->input->post('peso'),
                 'valor' => $this->input->post('valor'),
+                'valor_cmp' => $this->input->post('valor_cmp'),
                 'ativo' => $this->input->post('ativo'),
                 'fabricante' => $this->input->post('fabricante'),
-                'categoria' => $this->input->post('categoria'),
-                'data_inc' => $this->input->post('data_inc')
+                'categoria' => $this->input->post('categoria'),                
+                'foto' =>$arquivoPath = 'uploads/'.$data['dadosArquivo']['file_name']
             );
 
             $this->db->update('produtos', $data, array('id' => $id));

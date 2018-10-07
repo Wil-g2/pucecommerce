@@ -46,8 +46,7 @@
                     <label for="Tipo">Tipo</label>            
                     <select name="tipo" id="tipo" class="form-control">
                         <option value="">-- Selecione --</option>
-                        <option value="usuario">Usuário</option>
-                        <option value="fornecedor">Fornecedor</option>
+                        <option value="usuario">Usuário</option>                        
                         <option value="administrador">Administrador</option>
                     </select>                        
                 </div>

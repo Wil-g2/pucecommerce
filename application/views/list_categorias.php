@@ -26,6 +26,9 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
+                        <?php if ($this->session->flashdata('msg')!=null){ ?>                 
+                            <p class='alert alert-info'><?php echo $this->session->flashdata('msg');?></p>
+                        <?php } ?> 
                         <h3 class="card-title">Categorias</h3>
                         <a href="<?php echo base_url('categoriaadd'); ?>"  class="btn btn-success"> Novo <i class="fa fa-plus"></i></a>                        
                     </div>

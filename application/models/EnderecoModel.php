@@ -28,10 +28,18 @@ class EnderecoModel extends CI_Model{
 
     public function getEnderecoId($id =null){
         if ($id != null ){
-            $this->db->where('id',$id);
-            $this->db->limit(1);
+            $this->db->where('idendereco',$id);            
             $query = $this->db->get('enderecos');
-            return $query->row();
+            return $query->result();
+        }
+
+    }
+
+    public function getEnderecoIdUser($id =null){
+        if ($id != null ){
+            $this->db->where('user_enderecos',$id);            
+            $query = $this->db->get('enderecos');
+            return $query->result();
         }
 
     }
@@ -39,15 +47,15 @@ class EnderecoModel extends CI_Model{
     public function editar($id = null){
 
         if($id != null){
-            $this->db->update('enderecos', $this->getDadosForm(), array('id'=>$id));
+            $this->db->update('enderecos', $this->getDadosForm(), array('idendereco'=>$id));
         }
     }
 
     public function excluir($id = null){
 
         if ($id != null ){
-            $this->db->where('id',$id);
-            $this->db->delete('enderecos', array('id'=>$id));
+            $this->db->where('idendereco',$id);
+            $this->db->delete('enderecos', array('idendereco'=>$id));
         }
     }
 
@@ -58,7 +66,7 @@ class EnderecoModel extends CI_Model{
             'cidade' =>$this->input->post('cidade'),
             'bairro' =>$this->input->post('bairro'),
             'numero' =>$this->input->post('numero'),
-            'estado' =>$this->input->post('estado'),
+            'estado' =>$this->input->post('uf'),
             'complemento' =>$this->input->post('complemento'),
             'user_enderecos' =>$this->session->userdata('id_user'),
             'identificacao' => $this->input->post('identificacao')

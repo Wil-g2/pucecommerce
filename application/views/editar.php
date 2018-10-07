@@ -47,12 +47,15 @@
                 </div>
                 <div class="form-group">
                     <label for="Tipo">Tipo</label>
+                    <?php if($this->session->userdata('tipo')=='usuario'){?>
+                    <input type="text" disabled class="form-control" value="Usuário">
+                    <?php }else{?>
                     <select name="tipo" id="tipo" class="form-control">
                         <option value="">-- Selecione --</option>
-                        <option value="usuario" <?php if($query->tipo=='usuario'){echo 'selected';} ?> >Usuário</option>
-                        <option value="fornecedor" <?php if($query->tipo=='fornecedor'){echo 'selected';} ?>>Fornecedor</option>
+                        <option value="usuario" <?php if($query->tipo=='usuario'){echo 'selected';} ?> >Usuário</option>                        
                         <option value="administrador" <?php if($query->tipo=='administrador'){echo 'selected';} ?>>Administrador</option>
                     </select>
+                    <?php }?>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="id" value="<?php echo $query->id ?>"/><br>

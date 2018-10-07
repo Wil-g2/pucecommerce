@@ -25,7 +25,7 @@ class Login_Controller extends CI_Controller
             if ($this->session->userdata('tipo')=='administrador'){
                 redirect(base_url('admin'), 'refresh');    
             }else{
-                redirect(base_url('alunos'), 'refresh');
+                redirect(base_url('catalogo'), 'refresh');
             } 
             
         } 
@@ -69,14 +69,15 @@ class Login_Controller extends CI_Controller
             "email" => $this->input->post('email'),
         );
 
-        if ($this->form_validation->run() == FALSE) {                              
-           $this->LoadView('user/create_user',$dados);  
+        if ($this->form_validation->run() == FALSE) {
+           $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
+           $this->LoadView('user/create_user');
         } else {
             $this->UserModel->inserir($data);
             $dados = array("msg" => "Conta Criada com sucesso sua senha foi enviada para seu e-mail.", "tipo" => 'alert alert-info');
             $this->load->library('email');
             $this->email->initialize();
-            $this->email->from('willian@diretriz.net', 'willian');
+            $this->email->from('email@diretriz.net', 'willian');
             $this->email->to($this->input->post('email'));
             $this->email->subject('Email Test');
             $this->email->message('Sua conta foi criada com sucesso!! \n senha:123456');
@@ -87,5 +88,9 @@ class Login_Controller extends CI_Controller
             } 
             $this->load->view('user/create_user',$dados);
         }
+    }
+
+    public function LoadView($view = 'login',$dados = null , $dados_cat = null){
+            $this->load->view($view, $dados);
     }
 }

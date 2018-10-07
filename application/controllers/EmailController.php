@@ -14,12 +14,8 @@ class EmailController extends CI_Controller
         $this->load->library('email');
         $this->email->initialize();
         //$this->load->library('MY_Email');
-        $this->email->from('willian@diretriz.net', 'willian');
-        //$this->email->to('wil-g2@hotmail.com');
-        $this->email->to($this->input->post('email'));
-        //$this->email->to('willian@diretriz.net');
-        //$this->email->cc('another@another-example.com');
-        //$this->email->bcc('them@their-example.com');
+        $this->email->from('email@diretriz.net', 'willian');        
+        $this->email->to($this->input->post('email'));        
         $this->email->subject('Email Test');
         $this->email->message('Sua senha foi resetada com sucesso!! \n nova senha:123456');
         try{ 

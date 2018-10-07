@@ -24,7 +24,7 @@
             <div class="card">
             <div class="card-header">            
             <?php echo validation_errors(); ?>
-    <form method="post" action="<?php base_url('produtoadd');?>" >
+    <form method="post" action="<?php base_url('produtoadd');?>"  enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nome">Nome:  (*) </label>
@@ -38,16 +38,21 @@
             </div>
         </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="peso">Peso:  (*) </label>
             <input type="number" id="peso" name="peso" class="form-control" value="<?php echo set_value('peso');?>">
             <?php echo form_error("peso")  ?>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="valor">Valor:  (*) </label>
             <input type="number" id="valor" name="valor" class="form-control" value="<?php echo set_value('valor');?>">
             <?php echo form_error("valor")  ?>
         </div>
+        <div class="form-group col-md-4">
+            <label for="valor_cmp">Valor Compra:  (*) </label>
+            <input type="number" id="valor_cmp" name="valor_cmp" class="form-control" value="<?php echo set_value('valor_cmp');?>">
+            <?php echo form_error("valor_cmp")  ?>
+        </div>        
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -69,6 +74,10 @@
                 <?php endforeach; ?>
             </select>
             <?php echo form_error("categoria")  ?>
+        </div>
+        <div class="form-group">
+            <label>Foto:</label>
+            <input type="file" id="foto" name="foto"/>
         </div>
     </div>
     <div class="form-group">

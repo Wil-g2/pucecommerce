@@ -6,7 +6,7 @@
  * Time: 9:46 PM
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-class PedidoController extends CI_Controller
+class PedidoController extends MY_Controller
 {
 
     public function __construct()
@@ -24,4 +24,22 @@ class PedidoController extends CI_Controller
         $this->load->view('template_footer');
     }
 
+    public function relPedidos(){    
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('date_ini', 'Curso', 'trim|required');        
+        $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
+        
+        if ($this->form_validation->run() == FALSE) {                        
+            $this->loadRelPedidos();
+        } else {
+            $dados['ped']  = $this->PedidoModel->getPedidoPeriodo();
+            $this->loadRelPedidos($dados);
+        }
+    }
+
+    public function loadRelPedidos($dados = null){
+        $this->load->view('admin/header');
+        $this->load->view('relatorios/rel_pedidos',$dados);
+        $this->load->view('admin/footer');
+    }
 }

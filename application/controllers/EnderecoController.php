@@ -24,9 +24,17 @@
 
         public function list(){
             $dados ['query'] = $this->EnderecoModel->getEnderecos();
-            $dados_cat ['query'] = $this->EnderecoModel->getCategorias();
+            $dados_cat ['query'] = $this->CategoriaModel->getCategorias();
             $this->load->view('template_header',$dados_cat);
-            $this->load->view('list_enderecos', $dados);
+            $this->load->view('list_endereco', $dados);
+            $this->load->view('template_footer');
+        }
+
+        public function listId(){
+            $dados ['query'] = $this->EnderecoModel->getEnderecoIdUser($this->session->userdata('id_user'));
+            $dados_cat ['query'] = $this->CategoriaModel->getCategorias();
+            $this->load->view('template_header',$dados_cat);
+            $this->load->view('list_endereco', $dados);
             $this->load->view('template_footer');
         }
 
@@ -41,17 +49,17 @@
             $this->form_validation->set_rules('cidade', 'Cidade', 'trim|required');
             $this->form_validation->set_rules('numero', 'Número', 'trim|required');
             $this->form_validation->set_rules('cep', 'CEP', 'trim|required');            
+            $this->form_validation->set_rules('uf', 'UF', 'trim|required');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('template_header', $dados_cat);
                 $this->load->view('create_endereco');
                 $this->load->view('template_footer');
-            } else {
-                
+            } else {                
                 if ($this->EnderecoModel->inserir()){                                  
-                    $msg ['msg']='Endereço salvo com sucesso!';
+                    $this->session->set_flashdata('msg', 'Endereço salvo com sucesso.');                    
                     $this->load->view('template_header', $dados_cat);
-                    $this->load->view('create_endereco',$msg);
+                    $this->load->view('create_endereco');
                     $this->load->view('template_footer');                    
                 }                
             }
@@ -61,9 +69,9 @@
         public function editar($id = null){
 
             if($id== null){
-                redirect(base_url('cursos'));
+                redirect(base_url('enderecos'));
             }else{
-                $dados['query'] = $this->EnderecoModel->getEnderecoId($id);
+                $dados['end'] = $this->EnderecoModel->getEnderecoId($id);
                 $dados_cat ['query'] = $this->CategoriaModel->getCategorias();
 
                 $this->load->library('form_validation');
@@ -72,25 +80,27 @@
                 $this->form_validation->set_rules('cidade', 'Cidade', 'trim|required');
                 $this->form_validation->set_rules('numero', 'Número', 'trim|required');
                 $this->form_validation->set_rules('cep', 'CEP', 'trim|required');
+                $this->form_validation->set_rules('uf', 'UF', 'trim|required');
                 $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
 
                 if ($this->form_validation->run() == FALSE) {
                     $this->load->view('template_header', $dados_cat);
-                    $this->load->view('editar_curso', $dados);
-                    $this->load->view('template_footer');
+                    $this->load->view('editar_endereco', $dados);
+                    $this->load->view('template_footer');                  
                 } else {
                     $this->EnderecoModel->editar($id);
-                    redirect(base_url('cursos'), 'location');
+                    $this->session->set_flashdata('msg', 'Endereço editado com sucesso.');
+                    redirect(base_url('enderecos'), 'location');
                 }
             }
         }
 
         public function excluir($id = null){
             if($id== null){
-                redirect(base_url('cursos'));
+                redirect(base_url('enderecos'));
             }else{
                 $this->EnderecoModel->excluir($id);
-                redirect(base_url('cursos'),'localtion');
+                redirect(base_url('enderecos'),'localtion');
             }
         }
     }

@@ -41,18 +41,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-    <style>
-        #main{
-            margin-top: 60px;
-            margin-bottom: 60px;
-        }
-        #sidebar{
-            margin-top: 60px;
-            margin-bottom: 60px;
-        }
-
-    </style>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>    
     <title>Lojas PUC</title>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -61,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> -->
         <!--<div class="container-fluid">-->
         <div class='navbar-header'>
-            <a class="navbar-brand" href="<?php echo base_url('users'); ?>"><strong>Loja</strong></a>
+            <a class="navbar-brand" href="<?php echo base_url('users'); ?>" data-widget="pushmenu" ><strong>Loja</strong><i class="fa fa-bars"></i> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -72,17 +61,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <a class="nav-link" href="<?php echo base_url('useredit').'/'.$this->session->userdata('id_user'); ?>"><i class="fa fa-user"></i> Usuários <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('pessoaadd'); ?>"><i class="fa fa-users"></i> Cadastrado<span class="sr-only">(current)</span></a>
-                </li>
+                    <a class="nav-link" href="<?php echo base_url('pessoaedit/'.$this->session->userdata('id_user')); ?>"><i class="fa fa-users"></i> Cadastrado<span class="sr-only">(current)</span></a>
+                </li>                
                 <li>
-                    <a class="nav-link" href="<?php echo base_url('pagamentos'); ?>"><i class="fa fa-money"></i> Pagamentos<span class="sr-only">(current)</span></a>
-                </li>               
-                <li>
-                    <a class="nav-link" href="<?php echo base_url('enderecoadd'); ?>"><i class="fa fa-product-hunt"></i> Endereços<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?php echo base_url('enderecos/'.$this->session->userdata('id_user')); ?>"><i class="fa fa-product-hunt"></i> Endereços<span class="sr-only">(current)</span></a>
                 </li>
                 <li>
                     <a class="nav-link" href="<?php echo base_url('pedidos'); ?>"><i class="fa-first-order"></i> Pedidos<span class="sr-only">(current)</span></a>
                 </li>
+                <li>
+                    <a class="nav-link" href="<?php echo base_url('sacadd'); ?>"><ion-icon name="call"></ion-icon> SAC<span class="sr-only">(current)</span></a>
+                </li>                
             </ul>
         </div>
         <form class="form-inline my-2 my-lg-0">           

@@ -12,7 +12,7 @@ class AcompanharModel extends CI_Model{
         return $query->result();
     }
 
-    public function inserir($idPedido = 0){       
+    public function inserir($dados){       
         $data = array(
             'id_pedido' =>$idPedido,
             'evento'=> "teste"
@@ -24,8 +24,7 @@ class AcompanharModel extends CI_Model{
 
     public function getAcompanhamentoId($id = null){
         if ($id != null ){
-            $this->db->where('id',$id);
-            $this->db->limit(1);
+            $this->db->where('id_pedido',$id);            
             $query = $this->db->get('acompanhamento');
             return $query->row();
         }
@@ -34,12 +33,18 @@ class AcompanharModel extends CI_Model{
 
     public function getAcompanhamentoPedidoId($id = null){
         if ($id != null ){
-            $this->db->where('id_pedido',$id);
+            $this->db->where('idpedido',$id);
             $query = $this->db->get('acompanhamento');
             return $query->result();
         }
     }
 
+    public function getAcompanhamentoBI(){
+        $date = ('Y-m-d');
+        $this->db->where('data', strtotime($date));
+        $query = $this->db->get('acompanhamento');
+        return $query->result();
+    }
     public function editar($id = null){
 
         if($id != null){

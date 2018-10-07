@@ -35,7 +35,13 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
     <script src="<?php echo base_url() . "assets/plugins/bootstrap/js/bootstrap.bundle.min.js"?> "></script>
     <!-- DataTables -->
     <script src="<?php echo base_url() . "assets/plugins/datatables/jquery.dataTables.js"?>"></script>
-    <<script src="<?php echo base_url() . "assets/plugins/datatables/dataTables.bootstrap4.js" ?>"></script>
+    <script src="<?php echo base_url() . "assets/plugins/datatables/dataTables.bootstrap4.js" ?>"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -46,19 +52,10 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo base_url('users') ?>" class="nav-link"><i class="fa fa-user"></i> Usuários</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo base_url('categorias') ?>" class="nav-link"><i class="fa fa-tags"></i> Categorias</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo base_url('produtos') ?>" class="nav-link"><i class="fa fa-product-hunt"></i> Produtos</a>
-      </li>      
+      </li>          
     </ul>
 
-    <!-- SEARCH FORM -->
+    <!-- SEARCH FORM 
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -68,7 +65,7 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
           </button>
         </div>
       </div>
-    </form>
+    </form>-->
     
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -176,9 +173,9 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="<?php echo base_url() ."assets/dist/img/AdminLTELogo.png"?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <!-- <img src="<?php echo base_url() ."assets/dist/img/AdminLTELogo.png"?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" 
+           style="opacity: .8"> -->
+      <span class="brand-text font-weight-light"></span>
     </a>
 
     <!-- Sidebar -->
@@ -186,10 +183,10 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo base_url() ."assets/dist/img/user2-160x160.jpg"?> " class="img-circle elevation-2" alt="User Image">
+          <img src="<?php //echo base_url() ."assets/dist/img/user2-160x160.jpg"?> " class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><strong>PUC Minas</strong></a>
         </div>
       </div>
 
@@ -198,7 +195,7 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <!--<li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
@@ -235,8 +232,66 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item has-treeview">
+            <a href="<?php echo base_url('users') ?>" class="nav-link">
+            <i class="nav-icon fa fa-user"></i><p>
+                Usuários                 
+            </p>
+            </a>
+          </li>  
+          <li class="nav-item has-treeview">
+            <a href="<?php echo base_url('categorias') ?>" class="nav-link">
+            <i class="nav-icon fa fa-tags"></i><p>
+                Categoria                 
+            </p>
+            </a>
+          </li>  
+          <li class="nav-item has-treeview">
+            <a href="<?php echo base_url('produtos') ?>" class="nav-link">
+            <i class="nav-icon fa fa-cube"></i><p>
+                Produtos                 
+            </p>
+            </a>
+          </li> 
+          <li class="nav-item has-treeview">
+            <a href="<?php echo base_url('saclist') ?>" class="nav-link">
+            <i class="nav-icon fa fa-question-circle"></i><p>
+                SAC                 
+            </p>
+            </a>
+          </li>    
+          <li class="nav-item has-treeview">
+            <a href="<?php echo base_url('fornecedores') ?>" class="nav-link">
+            <i class="nav-icon fa fa-truck"></i><p>
+                Fornecedor                             
+            </p>
+            </a>
+          </li>       
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-pie-chart"></i>
+                    <p>
+                        Relatórios
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('relpedidos');?>" class="nav-link">
+                            <i class="fa fa-circle-o nav-icon"></i>
+                            <p>Pedidos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('relsac') ?>" class="nav-link">
+                            <i class="fa fa-circle-o nav-icon"></i>
+                            <p>Chamados</p>
+                        </a>
+                    </li>                   
+                </ul>
+            </li>
+         <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
@@ -493,7 +548,7 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
               <p>Informational</p>
             </a>
           </li>
-        </ul>
+        </ul>-->
       </nav>
       <!-- /.sidebar-menu -->
     </div>

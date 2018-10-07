@@ -88,5 +88,19 @@ class PedidoModel extends CI_Model{
             $this->db->delete('pedido', array('idpedido'=>$id));
         }
     }
-    
+
+    public function getPedidoPeriodo(){
+        if ($this->input->post('usuario')!=null){
+            $this->db->where('id_user',$this->input->post('usuario'));
+        }        
+        $dateIni = $this->input->post('date_ini'); 
+        $dateFim = $this->input->post('date_fim'); 
+        if ($dateIni!=$dateFim){
+            $this->db->where('data >=', date('Y-m-d',strtotime($dateIni)));
+            $this->db->where('data <=', date('Y-m-d',strtotime($dateFim)));
+        }else{
+            $this->db->where('data = ', date('Y-m-d',strtotime($dateIni)));
+        }
+        return $this->db->get('pedido')->result();
+    }    
 }

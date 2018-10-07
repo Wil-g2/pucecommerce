@@ -43,8 +43,8 @@ defined('BASEPATH') or exit('não tem acesso ao arquivo');
                 <?php if (empty($acompanhamento)){ ?>
                     <td id="isEmpty" colspan="5" class="bg-info">Nenhum Acontecimento! </>               
                 <?php } else{?>    
-                <td><?php echo $dado->id_pedido; ?> </td>
-                <td><?php echo $date = new DateTime($dado->data); echo $date->format('d/m/Y'); ?></td>
+                <td><?php echo $dado->idpedido; ?> </td>
+                <td><?php $date = new DateTime($dado->data); echo $date->format('d/m/Y'); ?></td>
                 <td><?php echo $dado->evento; ?></td>    
                 <?php } endforeach; ?>
             </tr> 

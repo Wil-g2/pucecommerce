@@ -9,16 +9,10 @@
             $this->load->model("CategoriaModel");
         }
     
-    public function index(){
-
-    }
 
     public function list(){
         $dados ['query'] = $this->CategoriaModel->getCategorias();
-        $this->LoadView('list_categorias',$dados,$dados);
-        /*$this->load->view('template_header', $dados);               
-        $this->load->view('list_categorias', $dados);
-        $this->load->view('template_footer');               */
+        $this->LoadView('list_categorias',$dados,$dados);  
     }
 
     public function add(){
@@ -29,12 +23,11 @@
         $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
         
         if ($this->form_validation->run() == FALSE) {
-            $this->LoadView('create_categoria',null,$dados_cat);
-            /*$this->load->view('template_header', $dados_cat);               
-            $this->load->view('create_categoria');
-            $this->load->view('template_footer'); */              
+            $this->session->set_flashdata('msg', 'Categoria não pode ser salva.');
+            $this->LoadView('create_categoria', null ,$dados_cat);            
         } else {
             $this->CategoriaModel->inserir();
+            $this->session->set_flashdata('msg', 'Categoria salva com sucesso.');
             redirect(base_url('categorias'));
         }
                         
@@ -53,12 +46,10 @@
             $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
                 
             if ($this->form_validation->run() == FALSE) {
-                $this->LoadView('editar_categoria',$dados,$dados_cat);
-                /*$this->load->view('template_header', $dados_cat);               
-                $this->load->view('editar_categoria', $dados);
-                $this->load->view('template_footer');*/               
+                $this->LoadView('editar_categoria',$dados,$dados_cat);                          
             } else {
                 $this->CategoriaModel->editar($id);
+                $this->session->set_flashdata('msg', 'Categoria editada com sucesso.');
                 redirect(base_url('categorias'), 'location');
             }                                        
         }                             

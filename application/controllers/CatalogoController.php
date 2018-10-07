@@ -19,6 +19,15 @@ class CatalogoController extends CI_Controller{
         $this->load->view('template_footer');
     }
 
+    public function list(){
+        $dados ['query'] = $this->CategoriaModel->getCategorias();
+        $dados ['produtos'] = $this->CatalogoModel->getCatalogos();
+        $this->load->view('template_header', $dados);
+        $this->load->view('catalogo/list_produtos',$dados);
+        $this->load->view('template_footer');
+        
+    }
+
     public function add($id){
         $dados = $this->CatalogoModel->getCartId($id);
         $itens = array(

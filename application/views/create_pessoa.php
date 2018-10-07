@@ -29,8 +29,11 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <?php echo validation_errors(); ?>
+                    <div class="card-header">                    
+                        <?php echo validation_errors();
+                            if ($this->session->flashdata('msg')!=null){ ?>                 
+                        <p class='alert alert-info'><?php echo $this->session->flashdata('msg');?></p>
+                        <?php } ?> 
                         <form method="post" action="<?php base_url('pessoaadd');?>">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -60,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                                     date_default_timezone_set('America/Sao_Paulo');
                                     $data_nascimento = New DateTime(set_value('data_nascimento'));
                                     ?>
-                                    <input type="date" name="data_nascimento" id="data_nascimento" value="<?php echo $data_nascimento->format('Y-m-d'); ?>" class="form-control"/>
+                                    <input type="date" name="nascimento" id="data_nascimento" value="<?php echo $data_nascimento->format('Y-m-d'); ?>" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -70,11 +73,11 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label>Telefone:</label>
-                                    <input type="tel" name="telefone" value="<?php echo set_value('telefone');  ?>" class="form-control" data-mask="(99) 99999-9999">
+                                    <input type="tel" name="telefone" id="telefone" value="<?php echo set_value('telefone');  ?>" class="form-control" data-mask="(99) 99999-9999">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Celular: (*)</label>
-                                    <input type="tel" name="celular" value="<?php echo set_value('celular');  ?>" class="form-control" data-mask="(99) 99999-9999">
+                                    <input type="tel" name="celular" id="celular" value="<?php echo set_value('celular');  ?>" class="form-control" data-mask="(99) 99999-9999">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -89,3 +92,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 </div>
 </section>
 </div>
+<script src="<?php echo base_url() . "assets/plugins/input-mask/jquery.inputmask.js" ?>"></script>
+<script> 
+    $(document).ready(function(){  
+        $('#celular').inputmask('(999) 99999-9999');
+        $('#telefone').inputmask('(999) 99999-9999');
+        $('#cpf').inputmask('999.999.999-99');
+    });
+
+</script> 

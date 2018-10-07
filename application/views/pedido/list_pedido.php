@@ -51,7 +51,8 @@ defined('BASEPATH') OR exit ('não tem acesso ao arquivo');
                 <td><?php echo $dado->idpedido; ?> </td>
                 <td><?php $date = new DateTime($dado->data); echo $date->format('d/m/Y'); ?></td>
                 <td><?php echo number_format($dado->total,2,',','.'); ?></td>
-                <td><a href="<?php echo base_url('acompanhar'); ?>">Acompanhar</a></td>
+                <td><a href="<?php echo base_url('acompanhar/'.$dado->idpedido); ?>">Acompanhar</a></td>
+                <td><a href="<?php echo base_url('avaliar'); ?>">Avaliar</a></td>
                 <?php endforeach; ?>
             </tr>
             </tbody>
